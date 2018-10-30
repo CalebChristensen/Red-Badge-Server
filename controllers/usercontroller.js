@@ -6,9 +6,9 @@ let jwt = require('jsonwebtoken');
 // || Create User Endpoint: STARTER ||
 router.post('/createuser', (req, res) => {
   User.create({
-    username: req.body.user.username,
-    email: req.body.user.email,
-    passwordhash: bcrypt.hashSync(req.body.user.password, 10)
+    username: req.body.username,
+    email: req.body.email,
+    passwordhash: bcrypt.hashSync(req.body.password, 10)
   })
   .then(
   createSuccess = (user) => {
@@ -16,7 +16,7 @@ router.post('/createuser', (req, res) => {
 
     res.json({
         user: user,
-        message: 'user created',
+        message: 'User created',
         sessionToken: token
     })
   },
@@ -25,11 +25,11 @@ router.post('/createuser', (req, res) => {
 })
 
 router.post('/signin',(req, res) => {
-    User.findOne( {where: { username: req.body.user.username } } )
+    User.findOne( {where: { username: req.body.username } } )
     .then(
         user => { 
             if (user) 
-                { bcrypt.compare(req.body.user.password, user.passwordhash, (err, matches) => { 
+                { bcrypt.compare(req.body.password, user.passwordhash, (err, matches) => { 
                     if (matches) {
                         let token = jwt.sign({id: user.id}, process.env.JWT_SECRET, { expiresIn: 60*60*24 }); 
                         res.json({ 

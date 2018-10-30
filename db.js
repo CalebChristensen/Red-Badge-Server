@@ -1,8 +1,7 @@
-require('dotenv').config();
-
 const Sequelize = require('sequelize');
+require('dotenv').config()
 
-const sequelize = new Sequelize('redbadge', 'postgres', 'PostgresWolf1!', {
+const sequelize = new Sequelize('redbadge', 'postgres', process.env.PASS, {
   host: 'localhost',
   dialect: 'postgres'
 });
