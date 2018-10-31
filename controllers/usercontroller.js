@@ -68,4 +68,9 @@ router.delete('/delete', validateSession, (req,res) => {
     )
 })
 
+router.get('/', validateSession, (req, res) => {
+    User.findOne({where: {id: req.user.id}})
+    .then(response => res.send(response))
+})
+
 module.exports = router
