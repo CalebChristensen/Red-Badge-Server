@@ -2,6 +2,7 @@ let router = require('express').Router();
 let User = require('../db').import('../models/user');
 let bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
+let validateSession = require('../middleware/validate-session')
 
 // || Create User Endpoint: STARTER ||
 router.post('/createuser', (req, res) => {
@@ -50,5 +51,21 @@ router.post('/signin',(req, res) => {
         }
     );
 });
+
+router.put('/update', validateSession, (req, res) => {
+    User.update(req.body, {where: {id: req.user.id}})
+    .then(
+        updateSuccess = () => res.send('Account updated'),
+        updateError = (err) => res.send(err)
+    )
+})
+
+router.delete('/delete', validateSession, (req,res) => {
+    User.destroy({where: {id: req.user.id}})
+    .then(
+        deleteSuccess = () => res.send('Account deleted'),
+        deleteError = (err) => res.send(err)
+    )
+})
 
 module.exports = router
