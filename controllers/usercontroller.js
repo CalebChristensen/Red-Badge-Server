@@ -52,8 +52,8 @@ router.post('/signin',(req, res) => {
     );
 });
 
-router.put('/update', validateSession, (req, res) => {
-    User.update(req.body, {where: {id: req.user.id}})
+router.put('/update/:id', validateSession, (req, res) => {
+    User.update(req.body, {where: {id: req.params.id}})
     .then(
         updateSuccess = () => res.send('Account updated'),
         updateError = (err) => res.send(err)
@@ -70,6 +70,11 @@ router.delete('/delete', validateSession, (req,res) => {
 
 router.get('/', validateSession, (req, res) => {
     User.findOne({where: {id: req.user.id}})
+    .then(response => res.send(response))
+})
+
+router.get('/allUsers', validateSession, (req, res) => {
+    User.findAll()
     .then(response => res.send(response))
 })
 

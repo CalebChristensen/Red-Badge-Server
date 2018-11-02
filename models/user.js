@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             maxlength: 5
+        },
+        admin: {
+          type: DataTypes.BOOLEAN,
+          defaultValue: false,
+          allowNull: false
         }
     });
     return User
