@@ -68,6 +68,14 @@ router.delete('/delete', validateSession, (req,res) => {
     )
 })
 
+router.delete('/adminDelete/:id', validateSession, (req, res) => {
+    User.destroy({where: {id: req.params.id}})
+    .then(
+        deleteSuccess = () => res.send('Account deleted'),
+        deleteError = (err) => res.send(err)
+    )
+})
+
 router.get('/', validateSession, (req, res) => {
     User.findOne({where: {id: req.user.id}})
     .then(response => res.send(response))
