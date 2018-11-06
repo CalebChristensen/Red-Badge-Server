@@ -53,7 +53,11 @@ router.post('/signin',(req, res) => {
 });
 
 router.put('/update/:id', validateSession, (req, res) => {
-    User.update(req.body, {where: {id: req.params.id}})
+    User.update({
+        username: req.body.username,
+        email: req.body.email,
+        passwordhash: bcrypt.hashSync(req.body.passwordhash, 10)
+      }, {where: {id: req.params.id}})
     .then(
         updateSuccess = () => res.send('Account updated'),
         updateError = (err) => res.send(err)
