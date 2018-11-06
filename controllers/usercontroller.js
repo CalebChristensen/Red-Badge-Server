@@ -22,7 +22,7 @@ router.post('/createuser', (req, res) => {
         sessionToken: token
     })
   },
-  createError = err => res.send(500, err)
+  createError = err => res.status(500).send(err)
   )
 })
 
