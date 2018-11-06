@@ -23,8 +23,11 @@ router.post('/create', validateSession, function (req,res) {
 });
 
 router.get('/getall', function(req, res){
+  let userid = req.user.id;
+
   BucketPoi
   .findAll({
+    where: { owner: userid },
     attributes: ['name', 'starts_on', 'url']
   })
   .then(
