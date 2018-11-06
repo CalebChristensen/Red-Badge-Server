@@ -15,5 +15,5 @@ BucketTour.belongsTo(User)
 
 
 
-sequelize.sync()
+sequelize.sync() //Pass in {force: true} for resetting tables.
 .then(console.log('database is created'))

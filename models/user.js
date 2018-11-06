@@ -5,8 +5,7 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
           unique: true,
           validate: {
-            notEmpty: true,
-            msg: 'Username cannot be blank'
+            notEmpty: true
           }
         },
         email: {
@@ -15,17 +14,14 @@ module.exports = (sequelize, DataTypes) => {
           unique: true,
           validate: {
             isEmail: true,
-            notEmpty: true,
-            msg: 'Email must be valid'
+            notEmpty: true
           }
         },
         passwordhash: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-              len: [5,20],
-              notEmpty: true,
-              msg: 'Password must be between 5 and 20 characters'
+              notEmpty: true
             }
         },
         admin: {
