@@ -13,7 +13,6 @@ router.post('/createuser', (req, res) => {
   })
   .then(
   createSuccess = (user) => {
-    user.createDestination({userId: user.id}) 
     let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {expiresIn: 60*60*24})
 
     res.json({
@@ -22,7 +21,7 @@ router.post('/createuser', (req, res) => {
         sessionToken: token
     })
   },
-  createError = err => res.send(500, err)
+  createError = err => res.status(500).send(err)
   )
 })
 

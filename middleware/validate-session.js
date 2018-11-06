@@ -8,7 +8,7 @@ module.exports = function(req, res, next) {
   }else{
     var sessionToken = req.headers.authorization;
     console.log(sessionToken)
-    if (!sessionToken) return releaseEvents.status(403).send({ auth: false, message: 'Boss where is your token??' });
+    if (!sessionToken) return res.status(403).send({ auth: false, message: 'Boss where is your token??' });
     else {
       jwt.verify(sessionToken, process.env.JWT_SECRET, (err, decoded) => {
         if(decoded){
