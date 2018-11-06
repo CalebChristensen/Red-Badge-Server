@@ -22,13 +22,12 @@ router.post('/create', validateSession, function (req,res) {
   );
 });
 
-router.get('/getall', function(req, res){
+router.get('/getall', validateSession, function(req, res){
   let userid = req.user.id;
 
-  BucketPoi
+  BucketTour
   .findAll({
-    where: { owner: userid },
-    attributes: ['name', 'starts_on', 'url']
+    where: { userId: userid }
   })
   .then(
     function findAllSuccess(data) {
