@@ -22,5 +22,20 @@ router.post('/create', validateSession, function (req,res) {
   );
 });
 
+router.get('/getall', function(req, res){
+  BucketPoi
+  .findAll({
+    attributes: ['name', 'starts_on', 'url']
+  })
+  .then(
+    function findAllSuccess(data) {
+      console.log("Controller data:", data);
+      res.json(data);
+    },
+    function findAllError(err) {
+      res.send(500, err.message);
+    }
+  );
+});
 
 module.exports = router;
