@@ -9,6 +9,9 @@ let country = require('./controllers/countrycontroller');
 let bucketpoi = require('./controllers/bucketpoicontroller');
 let bucketrest = require('./controllers/bucketrestcontroller');
 let buckettour = require('./controllers/buckettourcontroller');
+let bucketpoiComplete = require('./controllers/bucketpoiCompletecontroller');
+let bucketrestComplete = require('./controllers/bucketrestCompletecontroller');
+let buckettourComplete = require('./controllers/buckettourCompletecontroller');
 
 index.use(bodyParser.json());
 index.use(require('./middleware/headers'));
@@ -19,6 +22,11 @@ index.use('/country', country);
 index.use('/bucketpoi', bucketpoi);
 index.use('/bucketrest', bucketrest);
 index.use('/buckettour', buckettour);
+index.use('/completepoi', bucketpoiComplete);
+index.use('/completerest', bucketrestComplete);
+index.use('/completetour', buckettourComplete);
+
+
 
 index.use(require('./middleware/validate-session'));
 require('./associations')
