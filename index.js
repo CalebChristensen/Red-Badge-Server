@@ -9,6 +9,7 @@ let country = require('./controllers/countrycontroller');
 let bucketpoi = require('./controllers/bucketpoicontroller');
 let bucketrest = require('./controllers/bucketrestcontroller');
 let buckettour = require('./controllers/buckettourcontroller');
+let notes = require('./controllers/notescontroller')
 
 index.use(bodyParser.json());
 index.use(require('./middleware/headers'));
@@ -19,6 +20,7 @@ index.use('/country', country);
 index.use('/bucketpoi', bucketpoi);
 index.use('/bucketrest', bucketrest);
 index.use('/buckettour', buckettour);
+index.use('/notes', notes)
 
 index.use(require('./middleware/validate-session'));
 require('./associations')
