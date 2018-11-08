@@ -10,7 +10,6 @@ let bucketpoi = require('./controllers/bucketpoicontroller');
 let bucketrest = require('./controllers/bucketrestcontroller');
 let buckettour = require('./controllers/buckettourcontroller');
 let notes = require('./controllers/notescontroller')
-
 let bucketpoiComplete = require('./controllers/bucketpoiCompletecontroller');
 let bucketrestComplete = require('./controllers/bucketrestCompletecontroller');
 let buckettourComplete = require('./controllers/buckettourCompletecontroller');
@@ -29,9 +28,6 @@ index.use('/notes', notes)
 index.use('/completepoi', bucketpoiComplete);
 index.use('/completerest', bucketrestComplete);
 index.use('/completetour', buckettourComplete);
-
-
-
 
 index.use(require('./middleware/validate-session'));
 require('./associations')
