@@ -40,5 +40,9 @@ router.get('/getall', validateSession, function(req, res){
   );
 });
 
+router.delete('/delete/:id', validateSession, (req, res) => {
+  BucketRest.destroy({where: {id: req.params.id}})
+})
+
 
 module.exports = router;
