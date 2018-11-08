@@ -1,8 +1,7 @@
 const Sequelize = require('sequelize')
 require('dotenv').config()
 
-const sequelize = new Sequelize('redbadge', 'postgres', process.env.PASS, {
-  host: 'localhost',
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres'
 })
 
