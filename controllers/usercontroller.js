@@ -55,8 +55,7 @@ router.post('/signin',(req, res) => {
 router.put('/update/:id', validateSession, (req, res) => {
     User.update({
         username: req.body.username,
-        email: req.body.email,
-        passwordhash: bcrypt.hashSync(req.body.passwordhash, 10)
+        email: req.body.email
       }, {where: {id: req.params.id}})
     .then(
         updateSuccess = () => res.send('Account updated'),
@@ -81,7 +80,12 @@ router.delete('/adminDelete/:id', validateSession, (req, res) => {
 })
 
 router.get('/', validateSession, (req, res) => {
-    User.findOne({where: {id: req.user.id}})
+    User.findOne({where: {id: req.params.id}})
+    .then(response => res.send(response))
+})
+
+router.get('/update/:id', validateSession, (req, res) => {
+    User.findOne({where: {id: req.params.id}})
     .then(response => res.send(response))
 })
 

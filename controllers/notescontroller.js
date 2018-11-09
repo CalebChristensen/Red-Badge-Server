@@ -15,6 +15,11 @@ router.get('/', validateSession, (req, res) => {
     .then(response => res.send(response))
 })
 
+router.get('/get/:id', validateSession, (req, res) => {
+    Notes.findOne({where: {id: req.params.id, userId: req.user.id}})
+    .then(response => res.send(response))
+})
+
 router.put('/update/:id', validateSession, (req, res) => {
     Notes.update({note: req.body.note}, {where: {id: req.params.id}})
     .then(
