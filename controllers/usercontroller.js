@@ -39,15 +39,15 @@ router.post('/signin',(req, res) => {
                             sessionToken: token
                         });
                 }else{ 
-                    res.status(502).send({ error: "FISSION MAILED"});
+                    res.status(502).json({ message: "Incorrect password"});
                  }
             });
         }else{
-            res.status(500).send({ error: "Time Paradox"});
+            res.status(500).json({ message: "Username does not exist, please create an account"});
             }
         },
         function(err) {
-            res.status(501).send({ error: "FISSION MAILED" });
+            res.status(501).json({ message: "FISSION MAILED" });
         }
     );
 });
