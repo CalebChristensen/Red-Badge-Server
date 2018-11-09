@@ -80,7 +80,7 @@ router.delete('/adminDelete/:id', validateSession, (req, res) => {
 })
 
 router.get('/', validateSession, (req, res) => {
-    User.findOne({where: {id: req.params.id}})
+    User.findOne({where: {id: req.user.id}})
     .then(response => res.send(response))
 })
 
